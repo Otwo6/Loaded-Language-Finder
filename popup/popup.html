@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Loaded Language Finder</title>
+        <link rel="stylesheet" href="bulma.min.css"/>
+    </head>
+    <body>
+        <div class="container m-3">
+            <h1 class="title">Loaded Language Finder</h1>
+            
+            <div class="field">
+                <label class="label">Status</label>
+                <span class="tag is-success">Running</span>
+                <span class="tag is-danger">Stopped</span>
+            </div>
+        </div>
+
+        <div class="column is-3">
+            <div class="container">
+                <div class="field">
+                    <label class="label">Text To Check</label>
+                    <input class="input" type="text" placeholder="e.g. Hello world" id="inputText"></input>
+                </div>
+            </div>
+        </div>
+
+        <div class="container m-3">
+            <button class="button is-danger is-fullwidth" id="checkButton">Check</button>
+        </div>
+    </body>
+
+    <script src="popup.js"></script>
+</html>
