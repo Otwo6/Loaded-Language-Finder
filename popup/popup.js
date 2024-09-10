@@ -36,6 +36,7 @@ function checkCSV(word) {
         const columns = rows[i].split(','); // Split each row into columns
         if (columns[0].toLowerCase() === word.toLowerCase()) { // Check if the word is in column A (index 0)
             console.log("Word Split: " + word);
+            textIDElement.value = "all in here";
             break;
         }    
     }
