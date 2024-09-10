@@ -9,8 +9,10 @@ var newPassage;
 
 let rows = [];
 
+let bias = 0;
+
 function loadCSV() {
-    fetch(chrome.runtime.getURL('data.csv'))
+    fetch(chrome.runtime.getURL('csvFile.csv'))
     .then(response => response.text())
     .then(text => {
         rows = text.trim().split('\n');
@@ -27,6 +29,7 @@ function splitText(passage) {
 }
 
 function checkText(passage) {
+    bias = 0;
     fixedPassage = "";
     splitText(passage);
     
@@ -34,6 +37,7 @@ function checkText(passage) {
         checkCSV(split[i]);
     }
     fixedIDElement.value = fixedPassage;
+    console.log("Bias words: " + bias);
 }
 
 function checkCSV(word) {
@@ -41,7 +45,8 @@ function checkCSV(word) {
         const columns = rows[i].split(','); // Split each row into columns
         if (columns[0].toLowerCase() === word.toLowerCase()) { // Check if the word is in column A (index 0)
             console.log("Word Split: " + word);
-            word = columns[1];
+            word = (columns[1].split('\n'))[0];
+            bias++;
             break;
         }   
     }
