@@ -1,8 +1,11 @@
 // ELEMENTS
 const textIDElement = document.getElementById("inputText")
+const fixedIDElement = document.getElementById("fixedText")
 const checkButton = document.getElementById("checkButton")
 
-var splitPassage;
+
+let fixedPassage = "";
+var newPassage;
 
 let rows = [];
 
@@ -24,11 +27,13 @@ function splitText(passage) {
 }
 
 function checkText(passage) {
+    fixedPassage = "";
     splitText(passage);
     
     for(let i = 0; i < split.length; i++) {
-        checkCSV(split[i])
+        checkCSV(split[i]);
     }
+    fixedIDElement.value = fixedPassage;
 }
 
 function checkCSV(word) {
@@ -36,10 +41,11 @@ function checkCSV(word) {
         const columns = rows[i].split(','); // Split each row into columns
         if (columns[0].toLowerCase() === word.toLowerCase()) { // Check if the word is in column A (index 0)
             console.log("Word Split: " + word);
-            textIDElement.value = "all in here";
+            word = column[1];
             break;
-        }    
+        }   
     }
+    fixedPassage = fixedPassage.concat(word);
 }
 
 loadCSV();
