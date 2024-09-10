@@ -45,7 +45,7 @@ function checkCSV(word) {
             break;
         }   
     }
-    fixedPassage = fixedPassage.concat(word);
+    fixedPassage = fixedPassage.concat(word + " ");
 }
 
 loadCSV();
