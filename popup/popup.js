@@ -14,7 +14,7 @@ let bias = 0;
 let currentWordChecking = 0; // Word that is currently being checked
 
 function loadCSV() {
-    fetch(chrome.runtime.getURL('csvFile.csv'))
+    fetch(chrome.runtime.getURL('data.csv'))
     .then(response => response.text())
     .then(text => {
         rows = text.trim().split('\n');
@@ -27,7 +27,8 @@ checkButton.onclick = function() {
 }
 
 function splitText(passage) {
-    split = passage.split(' ');
+    const regex = /\w+|[.,;!?()]/g;
+    split = passage.match(regex);
 }
 
 function checkText(passage) {
@@ -57,16 +58,16 @@ function checkCSV(splitNumber) {
             let hasPhrase = true;
 
             for(let i = 0; i < csvWord.length; i++)
-            {
-                if(csvWord[i] == split[splitNumber + i])
                 {
+                    if(csvWord[i].toLowerCase() == split[splitNumber + i].toLowerCase())
+                    {
+                    }
+                    else
+                    {
+                        hasPhrase = false;
+                        break;
+                    }
                 }
-                else
-                {
-                    hasPhrase = false;
-                    break;
-                }
-            }
 
             if(hasPhrase)
             {
@@ -82,15 +83,15 @@ function checkCSV(splitNumber) {
         }
         else
         {
-            // Is a word 
+            // Is a word
+            
+            if (columns[0].toLowerCase() === split[splitNumber].toLowerCase()) { // Check if the word is in column A (index 0)
+                console.log("Word Split: " + split[splitNumber]);
+                split[splitNumber] = columns[1].replace(/(\r\n|\n|\r)/gm,"");
+                bias++;
+                break;
+            }   
         }
-
-        if (columns[0].toLowerCase() === split[splitNumber].toLowerCase()) { // Check if the word is in column A (index 0)
-            console.log("Word Split: " + split[splitNumber]);
-            split[splitNumber] = columns[1].replace(/(\r\n|\n|\r)/gm,"");
-            bias++;
-            break;
-        }   
     }
     fixedPassage = fixedPassage.concat(split[splitNumber] + " ");
 }
