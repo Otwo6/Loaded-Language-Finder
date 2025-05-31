@@ -6,6 +6,7 @@ const outerCircle = document.querySelector(".outer-circle")
 const needle = document.querySelector(".needle")
 const label = document.querySelector(".label span")
 const radioButton = document.querySelector("input[name='level']")
+const percentageElement = document.querySelector(".percentageValue")
 
 checkButton.onclick = async function() {
   const checkText = textIDElement.value;
@@ -27,6 +28,7 @@ checkButton.onclick = async function() {
     const percent = data.percentage;
     const rotation = (percent / 100) * 200 - 100;
     needle.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
+    percentageElement.textContent  = `${percent}%`;
   } catch (error) {
     fixedIDElement.value = "Error contacting server.";
     console.error("Failed to analyze:", error);
