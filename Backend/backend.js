@@ -27,7 +27,7 @@ app.post('/analyze', async (req, res) => {
   const inputText = 
   `Full Text Loaded Percentage: 83
 
-    Loaded Word: greedy CEO;expresses moral judgment and hostility toward the CEO
+    Loaded Word: Greedy CEO;expresses moral judgment and hostility toward the CEO
 
     Loaded Word: slashed;evokes violent or aggressive action rather than neutral business decision
 
@@ -67,8 +67,9 @@ app.post('/analyze', async (req, res) => {
 
   console.log(result);
 
-  res.json({ sentiment: result.loadedPercentage,
-             percentage: result.loadedPercentage
+  res.json({ revisedText: result.revisedText,
+             percentage: result.loadedPercentage,
+             wordList:  result.loadedWords
    });
 });
 
