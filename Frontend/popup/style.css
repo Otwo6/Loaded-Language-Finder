@@ -1,0 +1,70 @@
+.center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.container {
+	position: relative;
+	height: 300px;
+	width: 300px;
+}
+
+.meter {
+	position: relative;
+	height: 150px;
+	width: 100%;
+	overflow: hidden;
+}
+
+.outer-circle {
+	position: relative;
+	height: 300px;
+	width: 100%;
+	border-radius: 50% 50% 0 0;
+	background-image: linear-gradient(to right,
+						rgb(100, 100, 100),
+						rgb(150, 150, 150),
+						rgb(200, 200, 200));
+}
+
+.inner-circle {
+	height: 65%;
+	width: 65%;
+	border-radius: 50% 50% 0 0;
+	background: #6d6d6d;
+}
+
+.needle {
+	position: relative;
+	top: calc(50% - 15px);
+	left: 50%;
+	transform: translate(-50%, -50%);
+	height: 30px;
+	width: 30px;
+	background-color: #bbb;
+	border-radius: 50%;
+	transition: transform 0.3s ease;
+	transform: translate(-50%, -50%) rotate(-100deg);
+}
+
+.needle::before {
+	content: "";
+	position: relative;
+	top: -130%;
+	width: 20px;
+	height: 85px;
+	background-color: #bbb;
+	clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+	border-radius: 0 0 20px 20px;
+}
+
+.needle::after {
+	content: "";
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	background-color: #6d6d6d;
+	border-radius: 50%;
+	border: 2px solid #f1f1f1;
+}
