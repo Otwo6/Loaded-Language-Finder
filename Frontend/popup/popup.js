@@ -16,7 +16,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 
     await chrome.storage.local.remove("selectedText");
 
-    checkButton.click();
+    await checkButton.onclick();
   }
 });
 
