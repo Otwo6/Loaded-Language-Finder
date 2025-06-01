@@ -8,6 +8,18 @@ const label = document.querySelector(".label span")
 const radioButton = document.querySelector("input[name='level']")
 const percentageElement = document.querySelector(".percentageValue")
 
+window.addEventListener("DOMContentLoaded", async () => {
+  const { selectedText } = await chrome.storage.local.get("selectedText");
+
+  if (selectedText) {
+    textIDElement.value = selectedText;
+
+    await chrome.storage.local.remove("selectedText");
+
+    checkButton.click();
+  }
+});
+
 checkButton.onclick = async function() {
   const checkText = textIDElement.value;
 

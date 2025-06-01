@@ -17,6 +17,9 @@
         "type": "module"
     },
     "permissions": [
-        "storage"
+        "storage",
+        "contextMenus",
+        "scripting",
+        "activeTab"
     ]
 }

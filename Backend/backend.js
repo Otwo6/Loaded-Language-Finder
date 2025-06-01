@@ -49,7 +49,7 @@ app.post('/analyze', async (req, res) => {
 
       if(!hasPerc || !hasWords || !hasText)
       {
-        
+
       }
 
       // Output the result
@@ -70,55 +70,6 @@ app.post('/analyze', async (req, res) => {
     console.error(err);
     res.status(500).json({ error: 'Error running model' });
   }
-
-  // Using this as an attempt to improve background layout without need openAI API, will later integrate that in the backend. I'm just broke
-  /*const inputText = 
-  `Full Text Loaded Percentage: 83
-
-    Loaded Word: Greedy CEO;expresses moral judgment and hostility toward the CEO
-
-    Loaded Word: slashed;evokes violent or aggressive action rather than neutral business decision
-
-    Loaded Word: innocent citizens;implies moral purity of the affected individuals, creating emotional bias
-
-    Loaded Word: boost profit;suggests selfish or exploitative motive
-
-    Fully Revised Text: The CEO implemented job cuts affecting employees in order to increase company profits.`;
-
-  const lines = input.split('\n').map(line => line.trim()).filter(line => line !== '');
-
-  let loadedPercentage = '';
-  let loadedWords = [];
-  let revisedText = '';
-
-  // Parse each line
-  lines.forEach(line => {
-    if (line.startsWith('Full Text Loaded Percentage:')) {
-      loadedPercentage = line.replace('Full Text Loaded Percentage:', '').trim();
-    } else if (line.startsWith('Loaded Word:')) {
-      const [wordPart, description] = line.replace('Loaded Word:', '').split(';');
-      loadedWords.push({
-        word: wordPart.trim(),
-        description: description.trim()
-      });
-    } else if (line.startsWith('Fully Revised Text:')) {
-      revisedText = line.replace('Fully Revised Text:', '').trim();
-    }
-  });
-
-  // Output the result
-  const result = {
-    loadedPercentage,
-    loadedWords,
-    revisedText
-  };
-
-  console.log(result);
-
-  res.json({ revisedText: result.revisedText,
-             percentage: result.loadedPercentage,
-             wordList:  result.loadedWords
-   });*/
 });
 
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
