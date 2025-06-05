@@ -24,6 +24,13 @@ checkButton.onclick = async function() {
   const checkText = textIDElement.value;
 
   fixedIDElement.value = "Loading...";
+  checkButton.disabled = true;
+
+  // Clear Previous Data
+    needle.style.transform = `translate(-50%, -50%) rotate(-100deg)`;
+    percentageElement.textContent  = `0%`;
+    const wordListElement = document.getElementById("wordList");
+    wordListElement.innerHTML = "";
 
   try {
     const response = await fetch("http://localhost:5000/analyze", {
@@ -36,6 +43,9 @@ checkButton.onclick = async function() {
 
     const data = await response.json();
 
+    // Reenable Check Button
+    checkButton.disabled = false;
+
     // Sets Fixed Text Section
     fixedIDElement.value = data.revisedText;
 
@@ -46,7 +56,6 @@ checkButton.onclick = async function() {
     percentageElement.textContent  = `${percent}%`;
 
     // Word List
-    const wordListElement = document.getElementById("wordList");
     wordListElement.innerHTML = ""; // Clear previous content
 
     data.wordList.forEach(({ word, description }) => {
