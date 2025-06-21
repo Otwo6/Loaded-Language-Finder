@@ -26,10 +26,10 @@
 	height: 200px;
 	width: 200px;
 	border-radius: 50% 50% 0 0;
-	background-image: linear-gradient(to right,
-						rgb(100, 100, 100),
-						rgb(150, 150, 150),
-						rgb(200, 200, 200));
+	background-image: linear-gradient(to left,
+						#375D8A,
+						#8ca1b9,
+						rgb(238, 238, 238));
 	left: 50%;
 	transform: translate(-50%, 0%);
 }
@@ -38,7 +38,7 @@
 	height: 75%;
 	width: 75%;
 	border-radius: 50% 50% 0 0;
-	background: white;
+	background: #f5f1e6;
 }
 
 .needle {
@@ -87,8 +87,4 @@
 .wordList {
 	color: black;
 	cursor: help;
-}
-
-.check-button {
-	background-color: aqua;
 }

@@ -1,4 +1,6 @@
 /*! bulma.io v0.9.4 | MIT License | github.com/jgthms/bulma */
+
+
 .button,
 .file-cta,
 .file-name,
@@ -26,6 +28,7 @@
     padding-top: calc(0.5em - 1px);
     position: relative;
     vertical-align: top;
+    background-color: #f5f1e6;
 }
 .button:active,
 .button:focus,
@@ -371,7 +374,7 @@ th:not([align]) {
     text-align: inherit;
 }
 html {
-    background-color: #fff;
+    background-color: #f5f1e6;
     font-size: 16px;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
@@ -1624,13 +1627,13 @@ fieldset[disabled] .button.is-warning.is-inverted.is-outlined {
     color: #946c00;
 }
 .button.is-danger {
-    background-color: #f14668;
+    background-color: #375D8A;
     border-color: transparent;
     color: #fff;
 }
 .button.is-danger.is-hovered,
 .button.is-danger:hover {
-    background-color: #f03a5f;
+    background-color: #213e61;
     border-color: transparent;
     color: #fff;
 }
@@ -1645,14 +1648,14 @@ fieldset[disabled] .button.is-warning.is-inverted.is-outlined {
 }
 .button.is-danger.is-active,
 .button.is-danger:active {
-    background-color: #ef2e55;
+    background-color: #15263b;
     border-color: transparent;
     color: #fff;
 }
 .button.is-danger[disabled],
 fieldset[disabled] .button.is-danger {
-    background-color: #f14668;
-    border-color: #f14668;
+    background-color: #4c74a5;
+    border-color: #4c74a5;
     box-shadow: none;
 }
 .button.is-danger.is-inverted {
@@ -2917,6 +2920,7 @@ a.tag:hover {
 .subtitle,
 .title {
     word-break: break-word;
+	color: #363636;
 }
 .subtitle em,
 .subtitle span,
@@ -2937,10 +2941,14 @@ a.tag:hover {
     vertical-align: middle;
 }
 .title {
-    color: #363636;
-    font-size: 2rem;
+    color: #375D8A;
+    font-family: serif;
+    font-style: italic;
+    font-size: 3rem;
     font-weight: 600;
-    line-height: 1.125;
+    line-height: 1;
+	align-items: center;
+	text-align: center;
 }
 .title strong {
     color: inherit;
