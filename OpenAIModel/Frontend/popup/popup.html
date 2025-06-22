@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Loaded Language Finder</title>
+        <link rel="stylesheet" href="bulma.min.css"/>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="container m-3">
+            <h1 class="title">Nuance</h1>
+            <div class="field">
+                <label class="label">Enter a statement. Find the Loaded Language.</label>
+            </div>
+        </div>
+
+        <div class="column is-3">
+            <div class="container">
+                <div class="field">
+                    <textarea class="textarea" placeholder="e.g. That greedy CEO slashed jobs to boost profit." id="inputText"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="container m-3">
+            <button class="button is-danger is-fullwidth" id="checkButton">Check</button>
+        </div>
+
+        <div class="center">
+            <div class="guageContainer">
+                <div class="meter">
+                    <div class="outer-circle center">
+                        <div class="inner-circle">
+                            <div class="needle center">
+
+                            </div>
+                            <div class="percentageLabel center">
+                                <span class="percentageValue">0%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="column is-3">
+            <div class="container">
+                <div class="field">
+                    <label class="label">Neutralized Statement</label>
+                    <textarea class="textarea" placeholder="e.g. The CEO reduced staff to increase profits" id="fixedText" readonly ></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="column is-3">
+            <label class="label">Loaded Words</label>
+            <div id="wordList" class="wordList">
+            </div>
+        </div>
+
+        <div id="apiKeyOverlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background-color:rgba(0,0,0,0.8); z-index:1000; justify-content:center; align-items:center;">
+            <div style="background:white; padding:2rem; border-radius:8px; max-width:400px; width:100%; text-align:center;">
+                <h2 class="title is-4">API Key Required</h2>
+                <p>Please enter your API key to continue:</p>
+                <input class="input my-3" id="apiKeyInput" type="text" placeholder="sk-proj-..." />
+                <button class="button is-link is-fullwidth" id="saveApiKeyButton">Save API Key</button>
+            </div>
+        </div>
+
+    </body>
+
+    <script type="module" src="popup.js"></script>
+</html>

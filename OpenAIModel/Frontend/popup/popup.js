@@ -1,0 +1,102 @@
+// ELEMENTS
+const textIDElement = document.getElementById("inputText")
+const fixedIDElement = document.getElementById("fixedText")
+const checkButton = document.getElementById("checkButton")
+const outerCircle = document.querySelector(".outer-circle")
+const needle = document.querySelector(".needle")
+const label = document.querySelector(".label span")
+const radioButton = document.querySelector("input[name='level']")
+const percentageElement = document.querySelector(".percentageValue")
+
+window.addEventListener("DOMContentLoaded", async () => {
+  const { apiKey } = await chrome.storage.local.get("apiKey");
+
+  if(apiKey)
+  {
+    // Get selected text and check it for right click functionality
+    const { selectedText } = await chrome.storage.local.get("selectedText");
+
+    if (selectedText) {
+      textIDElement.value = selectedText;
+
+      await chrome.storage.local.remove("selectedText");
+
+      await checkButton.onclick();
+    }
+  }
+  else
+  {
+    document.getElementById("apiKeyOverlay").style.display = "flex";
+  }
+});
+
+checkButton.onclick = async function() {
+  const { apiKey } = await chrome.storage.local.get("apiKey");
+  
+  const checkText = textIDElement.value;
+
+  fixedIDElement.value = "Loading...";
+  checkButton.disabled = true;
+
+  // Clear Previous Data
+    needle.style.transform = `translate(-50%, -50%) rotate(-100deg)`;
+    percentageElement.textContent  = `0%`;
+    const wordListElement = document.getElementById("wordList");
+    wordListElement.innerHTML = "";
+
+  try {
+    const response = await fetch("http://localhost:5000/analyze", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "API-Key" : apiKey
+      },
+      body: JSON.stringify({ text: checkText })
+    });
+
+    const data = await response.json();
+
+    // Reenable Check Button
+    checkButton.disabled = false;
+
+    // Sets Fixed Text Section
+    fixedIDElement.value = data.revisedText;
+
+    // Percentage Gague
+    const percent = data.percentage;
+    const rotation = (percent / 100) * 200 - 100;
+    needle.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
+    percentageElement.textContent  = `${percent}%`;
+
+    // Word List
+    wordListElement.innerHTML = ""; // Clear previous content
+
+    data.wordList.forEach(({ word, description }) => {
+      const wordCard = document.createElement("div");
+      wordCard.classList.add("word-card");
+
+      // Use 'title' to show description on hover
+      wordCard.innerHTML = `
+        <span class="loaded-word" title="${description}">${word}</span>
+      `;
+
+      wordListElement.appendChild(wordCard);
+    });
+  } catch (error) {
+    fixedIDElement.value = "Error contacting server.";
+    console.error("Failed to analyze:", error);
+  }
+};
+
+// Save API Key Button
+document.getElementById("saveApiKeyButton").onclick = async () => {
+  const key = document.getElementById("apiKeyInput").value.trim();
+
+  if (key) {
+
+    await chrome.storage.local.set({ apiKey: key });
+    document.getElementById("apiKeyOverlay").style.display = "none";
+  } else {
+    alert("Please enter a valid API key.");
+  }
+};
