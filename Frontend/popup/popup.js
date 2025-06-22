@@ -9,18 +9,30 @@ const radioButton = document.querySelector("input[name='level']")
 const percentageElement = document.querySelector(".percentageValue")
 
 window.addEventListener("DOMContentLoaded", async () => {
-  const { selectedText } = await chrome.storage.local.get("selectedText");
+  const { apiKey } = await chrome.storage.local.get("apiKey");
 
-  if (selectedText) {
-    textIDElement.value = selectedText;
+  if(apiKey)
+  {
+    // Get selected text and check it for right click functionality
+    const { selectedText } = await chrome.storage.local.get("selectedText");
 
-    await chrome.storage.local.remove("selectedText");
+    if (selectedText) {
+      textIDElement.value = selectedText;
 
-    await checkButton.onclick();
+      await chrome.storage.local.remove("selectedText");
+
+      await checkButton.onclick();
+    }
+  }
+  else
+  {
+    document.getElementById("apiKeyOverlay").style.display = "flex";
   }
 });
 
 checkButton.onclick = async function() {
+  const { apiKey } = await chrome.storage.local.get("apiKey");
+  
   const checkText = textIDElement.value;
 
   fixedIDElement.value = "Loading...";
@@ -36,7 +48,8 @@ checkButton.onclick = async function() {
     const response = await fetch("http://localhost:5000/analyze", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "API-Key" : apiKey
       },
       body: JSON.stringify({ text: checkText })
     });
@@ -72,5 +85,18 @@ checkButton.onclick = async function() {
   } catch (error) {
     fixedIDElement.value = "Error contacting server.";
     console.error("Failed to analyze:", error);
+  }
+};
+
+// Save API Key Button
+document.getElementById("saveApiKeyButton").onclick = async () => {
+  const key = document.getElementById("apiKeyInput").value.trim();
+
+  if (key) {
+
+    await chrome.storage.local.set({ apiKey: key });
+    document.getElementById("apiKeyOverlay").style.display = "none";
+  } else {
+    alert("Please enter a valid API key.");
   }
 };

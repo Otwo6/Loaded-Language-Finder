@@ -61,6 +61,15 @@
             </div>
         </div>
 
+        <div id="apiKeyOverlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background-color:rgba(0,0,0,0.8); z-index:1000; justify-content:center; align-items:center;">
+            <div style="background:white; padding:2rem; border-radius:8px; max-width:400px; width:100%; text-align:center;">
+                <h2 class="title is-4">API Key Required</h2>
+                <p>Please enter your API key to continue:</p>
+                <input class="input my-3" id="apiKeyInput" type="text" placeholder="sk-proj-..." />
+                <button class="button is-link is-fullwidth" id="saveApiKeyButton">Save API Key</button>
+            </div>
+        </div>
+
     </body>
 
     <script type="module" src="popup.js"></script>
