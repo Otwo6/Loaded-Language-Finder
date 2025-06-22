@@ -60,66 +60,75 @@ Tier 1: Ollama Local Model
 
     Download and install [Ollama](https://ollama.com/download) on your machine.
 	
-    Load the extension from /extension-tier1-ollama.
+    In your terminal find where you installed Ollama and type "./ollama pull llama3.1" or pull another AI of your choice (WILL AFFECT EXTENSION ACCURACY)
 
-    In NUANCE settings, input your local model URL (default: http://localhost:11434).
+    If you installed a different AI model, find backend.js and change  model: 'llama3.1' to  model: '{YOUR MODEL}'
 
 Tier 2: OpenAI with Self-Hosted Backend (BYOK)
 
-    Install the backend server in /backend (or use your own).
+    Go to https://platform.openai.com/docs/models/o3
 
-    Add your OpenAI API key as an environment variable (OPENAI_API_KEY) or .env file.
+    Generate an API Key for o3 OpenAI model
 
-    Start your server (npm install && npm run start).
-
-    Load extension from /extension-tier2-openai.
-
-    Enter your backend URL in the settings page.
+    In the NUANCE extension, input the generated key (DO NOT SHARE ELSEWHERE)
 
 Tier 3: Managed Backend + Your API Key
 
-    Subscribe to NUANCE via the provided portal (link TBD).
-
-    Load extension from /extension-tier3-managed.
-
-    Enter your OpenAI API key in the settings page.
-
-    All other backend interactions are managed for you.
+    TBD
 
 Tier 4: Fully Managed Backend + Shared Key
 
-    Load extension from /extension-tier4-shared.
+    TBD
 
-    No API key needed.
+## Enabling Backend
 
-    You’ll be charged a micro-fee per use (~< $0.01).
-
-    Payments are tracked securely and transparently.
-
-
-		Find where your file location for NUANCE
-
- 		Open the Backend folder and copy the address
-
-		In your Terminal, type "CD " then paste the address
-
- 		Type "node backend"
-
-		When you see "Server running on http://localhost:5000" your backend is functioning
+	Find where your file location for NUANCE
+	
+	Open the Backend folder and copy the address
+	
+	In your Terminal, type "CD " then paste the address
+	
+	Type "node backend"
+	
+	When you see "Server running on http://localhost:5000" your backend is functioning
 		
-## Security
+## Privacy
 
-For a comprehensive description of all Jitsi Meet's security aspects, please check [this link](https://jitsi.org/security).
+We care deeply about user privacy.
 
-For a detailed description of Jitsi Meet's End-to-End Encryption (E2EE) implementation,
-please check [this link](https://jitsi.org/e2ee-whitepaper/).
+Tier 1: All data is processed locally on your machine.
 
-For information on reporting security vulnerabilities in Jitsi Meet, see [SECURITY.md](./SECURITY.md).
+Tier 2: Data is sent only to your self-hosted server.
 
-## Contributing
+Tier 3: Your queries are routed through NUANCE’s backend, but we never store your inputs or your API key.
 
-If you are looking to contribute to Jitsi Meet, first of all, thank you! Please
-see our [guidelines for contributing](CONTRIBUTING.md).
+Tier 4: Your requests are processed via NUANCE's backend and billed per use. We store only usage counts tied to anonymous IDs for billing — no personal data.
+
+We do not track browsing history, keystrokes, or personal activity.
+
+## Legal & Ethical Disclaimer
+
+NUANCE is a tool designed to highlight emotionally charged or "loaded" language in order to promote critical thinking and media literacy. However, it is not a fact-checker, nor does it claim to detect or correct misinformation.
+
+While NUANCE uses AI and linguistic pattern recognition to surface bias in wording, it does not validate the truth or accuracy of the content you input. If you submit misinformation or manipulated narratives, the extension will still return results based on that content. The quality of insights depends on the quality of input.
+
+    🛡️ Stay vigilant. NUANCE is intended to supplement your judgment, not replace it. Always consult multiple sources, especially on complex or controversial issues.
+
+    Additional Legal Notices
+
+	    No Liability for Misuse: We are not responsible for any actions taken based on NUANCE’s outputs. Users must apply critical thinking and personal judgment.
+	
+	    No Guarantee of Accuracy: NUANCE provides AI-generated suggestions based on language patterns. These are probabilistic and may not always reflect bias correctly.
+	
+	    No Medical, Legal, or Political Advice: This tool is not certified for use in professional or institutional decision-making. It is intended for educational and informational purposes only.
+	
+	    Privacy Preserved: NUANCE does not collect or store any user data unless you are using Tier 3 or Tier 4. Even in those cases, only minimal metadata is collected for performance or billing purposes, and no personal content is retained.
+	
+	    Third-Party API Use: If you use Tiers 2 or 3, you are also agreeing to the Terms of Service and Privacy Policies of third-party APIs (e.g., OpenAI). Make sure to read and understand them.
+
+## License
+
+This project is licensed under the MIT License — see the LICENSE file for details.
 
 <br />
 <br />
